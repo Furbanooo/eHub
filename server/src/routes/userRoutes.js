@@ -1,6 +1,7 @@
-import { Router } from 'express';
+const { Router } = require('express');
 const router = Router();
-import { createUser, getUsers } from './controllers/userControllers.js'
+const { createUser, getUsers } = require('../userControllers');
+//const { createUser, getUsers } = require('../controllers/userControllers');
 
 router.post('/', createUser);
 router.get('/', getUsers);
