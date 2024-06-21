@@ -1,10 +1,46 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
-const UserSchema = new mongoose.Schema({
-  name: { type: String, required: true },
-  email: { type: String, required: true, unique: true },
-  password: { type: String, required: true },
+const Schema = mongoose.Schema;
+const userSchema = new Schema({
+  name: String,
+  email: {
+    type: String,
+    unique: true,
+    sparse: true, // Allows null values for guest checkout
+  },
+  password: {
+    type: String,
+    required: function () {
+      return this.email !== null;
+    },
+  },
+  addresses: [
+    {
+      type: {
+        type: String,
+        enum: ["shipping", "billing"],
+        required: false,
+      },
+      street: String,
+      city: String,
+      state: String,
+      postalCode: String,
+      country: String,
+    },
+  ],
+  orders: [{ type: Schema.Types.ObjectId, ref: "Order" }],
+  sellRequests: [{ type: Schema.Types.ObjectId, ref: "SellRequest" }],
+  recyclingRequests: [{ type: Schema.Types.ObjectId, ref: "RecyclingRequest" }],
+  swapOffers: [{ type: Schema.Types.ObjectId, ref: "SwapOffer" }],
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
+  updatedAt: {
+    type: Date,
+    default: Date.now,
+  },
 });
 
-const User = mongoose.model('User', UserSchema);
+const User = mongoose.model("User", userSchema);
 export default User;
