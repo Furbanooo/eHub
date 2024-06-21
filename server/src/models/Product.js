@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
-import Brand from "./Brand";
-import Category from "./Category";
+import Brand from "./Collections.js";
+import Category from "./Collections.js";
 
 const Schema = mongoose.Schema;
 const productSchema = new Schema({

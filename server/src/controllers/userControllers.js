@@ -1,4 +1,4 @@
-import User from '../models/user.js';
+import User from '../models/Collections.js';
 
 export const createUser = async (req, res) => {
   const { name, email, password } = req.body;
