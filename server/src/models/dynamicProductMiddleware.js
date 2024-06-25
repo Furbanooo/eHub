@@ -1,4 +1,4 @@
-import Product from "./Collections.js";
+import {Product} from "./allModels.js";
 
 const dynamicProduct =function (schema) {
 

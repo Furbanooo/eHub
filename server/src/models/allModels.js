@@ -10,7 +10,7 @@ import Cart from './Cart.js';
 import Category from './Category.js';
 import Brand from './Brand.js';
 
-export default {
+export {
   Product,
   User,
   Order,
