@@ -6,7 +6,7 @@ const userSchema = new Schema({
   email: {
     type: String,
     unique: true,
-    sparse: true, // Allows null values for guest checkout
+    repuired: true,
   },
   password: {
     type: String,
@@ -14,24 +14,34 @@ const userSchema = new Schema({
       return this.email !== null;
     },
   },
-  addresses: [
-    {
-      type: {
-        type: String,
-        enum: ["shipping", "billing"],
-        required: false,
-      },
-      street: String,
-      city: String,
-      state: String,
-      postalCode: String,
-      country: String,
+  addresses: [{
+    type: {
+      type: String,
+      enum: ["shipping", "billing"],
+      required: false,
     },
-  ],
-  orders: [{ type: Schema.Types.ObjectId, ref: "Order" }],
-  sellRequests: [{ type: Schema.Types.ObjectId, ref: "SellRequest" }],
-  recyclingRequests: [{ type: Schema.Types.ObjectId, ref: "RecyclingRequest" }],
-  swapOffers: [{ type: Schema.Types.ObjectId, ref: "SwapOffer" }],
+    street: String,
+    city: String,
+    state: String,
+    postalCode: String,
+    country: String,
+  }],
+  orders: [{
+    type: Schema.Types.ObjectId,
+    ref: "Order"
+  }],
+  sellRequests: [{
+    type: Schema.Types.ObjectId,
+    ref: "SellRequest"
+  }],
+  recyclingRequests: [{
+    type: Schema.Types.ObjectId,
+    ref: "RecyclingRequest"
+  }],
+  swapOffers: [{
+    type: Schema.Types.ObjectId,
+    ref: "SwapOffer"
+  }],
   createdAt: {
     type: Date,
     default: Date.now,

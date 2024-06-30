@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import dynamicProduct from "./dynamicProductMiddleware.js";
+//import dynamicProduct from "../middleWares/dynamicProduct.js";
 
 const Schema = mongoose.Schema;
 const swapOfferSchema = new Schema({
@@ -8,25 +8,23 @@ const swapOfferSchema = new Schema({
     ref: 'User',
     required: true
   },
-  productOffered: { // Updated productOffered field
-    productDetails: {
-      name: {
-        type: String,
-        required: true
-      },
-      brand: {
-        type: String,
-        required: true
-      },
-      model: String,
-      condition: {
-        type: String,
-        enum: ['like new', 'good', 'fair', 'acceptable'],
-        required: true
-      }
+  productDetails: {
+    name: {
+      type: String,
+      required: true
+    },
+    brand: {
+      type: String,
+      required: true
+    },
+    model: String,
+    condition: {
+      type: String,
+      enum: ['like new', 'good', 'fair', 'acceptable'],
+      required: true
     },
     images: [{ type: String }],
-    additionalDetails: String,
+    additionalDetails: String
   },
   productDesired: {
     type: Schema.Types.ObjectId,
@@ -77,7 +75,7 @@ const swapOfferSchema = new Schema({
   timestamps: true // This automatically manages createdAt and updatedAt fields
 });
 
-swapOfferSchema.plugin(dynamicProduct); // Apply the middleware
+//swapOfferSchema.plugin(dynamicProduct); // Apply the middleware
 
 const SwapOffer = mongoose.model('SwapOffer', swapOfferSchema);
 

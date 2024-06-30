@@ -19,15 +19,15 @@ const app = express();
 app.use(express.json());
 
 // Routes
-app.use('/api/users', userRoutes);
-app.use('/api/products', productRoutes);
+app.use('/users', userRoutes);
+app.use('/products', productRoutes);
 
 app.use('/page2', (req, res) => {
-  res.send('this is page 2!'); 
+  res.send('this is page 2!');
 });
 
 app.use('/', (req, res) => {
-  res.send('Welcome to the eHub API!'); 
+  res.send('Welcome to the eHub API!');
 });
 
 app.use((req, res) => {

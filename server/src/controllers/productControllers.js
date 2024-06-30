@@ -1,5 +1,6 @@
-import {Product} from "../models/allModels.js";
+import { Product } from "../models/allModels.js";
 
+//fetch all product from the
 const displayAllProduct = async (req, res) => {
     try {
         const {
@@ -90,8 +91,9 @@ const displayAllProduct = async (req, res) => {
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
-}; //fetch all product from the db 
+};
 
+//find a product by id
 const findProductById = async (req, res) => {
     try {
         const product = await Product.findById(req.params.id);
@@ -99,8 +101,9 @@ const findProductById = async (req, res) => {
     } catch (error) {
         res.status(404).json({ message: error.message });
     }
-}; //find a product by id
+};
 
+//create a new product
 const createProduct = async (req, res) => {
     const { name, description, price, image, category } = req.body;
     try {
@@ -116,7 +119,7 @@ const createProduct = async (req, res) => {
     } catch (error) {
         res.status(400).json({ message: error.message });
     }
-}; //create a new product
+};
 
 const updateProduct = async (req, res) => {
     const { name, description, price, image, category } = req.body;
