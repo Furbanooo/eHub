@@ -1,18 +1,27 @@
-import { Outlet } from "react-router-dom";
-import { Navigation } from "./pages/auth/Navigation";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import React from "react";
+import { DropdownsProvider } from "./utilities/dropDown";
+import { useState, useEffect } from "react";
+import header from "./path/header";
 
-const App = () => {
+function App() {
+  const [apiTest, setApiTest] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:3000/test")
+      .then((response) => response.json())
+      .then((data) => {
+        setApiTest(data);
+      });
+  }, []); // Empty dependency array ensures this effect runs only once on mount
+
   return (
-    <>
-      <ToastContainer />
-      <Navigation />
-      <main className="py-3">
-        <Outlet />
-      </main>
-    </>
+    <div>
+      <DropdownsProvider>
+        <h1>Test API Data</h1>
+        <header />
+      </DropdownsProvider>
+    </div>
   );
-};
+}
 
 export default App;

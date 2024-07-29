@@ -1,7 +1,8 @@
-import express from "express";
+import express, { text } from "express";
 import userControllers from "../controllers/userController.js";
 import { authenticate, authorizeAdmin } from "../middleware/auth.js";
 import logger from "../middleware/logger.js";
+import expressAsyncHandler from "express-async-handler";
 
 const userRoutes = express.Router();
 

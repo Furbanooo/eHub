@@ -5,6 +5,7 @@ import generateToken from '../utils/jwtToken.js'
 
 const login = asyncHandler(async (req, res, next) => {
     const { email, password } = req.body;
+    console.log(req.body);
 
     if (!email || !password) {
         //check if the fields are empty 
@@ -22,6 +23,7 @@ const login = asyncHandler(async (req, res, next) => {
                 res.status(201).json({ message: `welcome ${user.name}, you are logged in :)` });
             } else {
                 res.send({ message: 'Password incorrect try with the correct one or register (it\'s free)' });
+                console.log(user);
             }
         } catch (error) { res.status(500).send({ message: error.message }) }
 
