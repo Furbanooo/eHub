@@ -1,0 +1,88 @@
+/* navigation.css */
+
+/* Base styles for the Navigation component */
+.navigation {
+  display: flex;
+  justify-content: space-around; /* Distribute icons evenly */
+  align-items: center;
+  padding: 0.5rem 1rem; /* Adjust padding as needed */
+  border-radius: 50px; /* Rounded corners for the pill shape */
+  width: 250px; /* Initial collapsed width */
+  transition: width 0.9s ease-in-out; /* Smooth width transition */
+  overflow: hidden;
+}
+.navigation:hover {
+  width: 250px; /* Adjust the expanded width as needed */
+  transition: width 0.9s ease-in-out; /* Smooth width transition */
+}
+.navigation:hover li a {
+  opacity: 1;
+}
+.navigation-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 2rem; /* Add space between list items */
+}
+
+/* Navigation list item */
+.navigation-list li {
+  position: relative; /* For positioning the dropdown */
+}
+
+/* Icon styling */
+.navigation-list li svg {
+  color: white; /* Icon color */
+  cursor: pointer;
+  transition: transform 0.2s ease; /* Add a subtle transition */
+}
+
+/* Dropdown Container Style */
+.navigation-list li div {
+  position: absolute;
+  top: 100%; /* Position below the icon */
+  left: 0;
+  width: 150px; /* Adjust width as needed */
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 0.5rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+/* Show dropdown on hover */
+.navigation-list li:hover div {
+  opacity: 1;
+  pointer-events: auto;
+}
+.navigation-list li:hover a {
+  opacity: 1;
+}
+/* Dropdown Link Style */
+.navigation-list li div ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.navigation-list li div a {
+  display: block;
+  padding: 8px 12px;
+  color: #333;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+
+.navigation-list li div a:hover {
+  background-color: #f5f5f5;
+}
+
+/* Hide link text in collapsed state */
+.nav-item-name {
+  opacity: 0; /* Initially hidden */
+  margin-left: 0.5rem; /* Add space between icon and text */
+  transition: opacity 0.3s ease-in-out;
+}

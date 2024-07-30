@@ -1,7 +1,9 @@
 import React from "react";
 import { DropdownsProvider } from "./utilities/dropDown";
 import { useState, useEffect } from "react";
-import header from "./path/header";
+import Header from "./path/header.jsx";
+import Navigation from "./component/navigation.jsx";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
   const [apiTest, setApiTest] = useState([]);
@@ -15,11 +17,8 @@ function App() {
   }, []); // Empty dependency array ensures this effect runs only once on mount
 
   return (
-    <div>
-      <DropdownsProvider>
-        <h1>Test API Data</h1>
-        <header />
-      </DropdownsProvider>
+    <div className="navigation-container">
+      <Header />
     </div>
   );
 }

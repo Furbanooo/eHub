@@ -1,25 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
 import Navigation from "../component/navigation";
-import { useDropdownsContext } from "../utilities/dropDown";
+import "../style/header.css";
 
-function header() {
-  const { showDropdown, handleMouseOver, handleMouseOut } =
-    useDropdownsContext();
+function Header() {
+  const [showDropdown, setShowDropdown] = useState(false);
+
+  const handleMouseOver = () => {
+    setShowDropdown(true);
+  };
+
+  const handleMouseOut = () => {
+    setShowDropdown(false);
+  };
 
   return (
-    <div onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
-      <div className="navigation-container">
-        {showDropdown ? (
-          <div>
-            <h1>Header</h1>
-            <Navigation />
-          </div>
-        ) : (
-          <h1>Header</h1>
-        )}
-      </div>
+    <div
+      onMouseOver={handleMouseOver}
+      onMouseOut={handleMouseOut}
+      className="header-container"
+    >
+      {showDropdown ? (
+        <div>
+          <h1>eHub</h1>
+          <Navigation />
+        </div>
+      ) : (
+        <h1>eHub</h1>
+      )}
     </div>
   );
 }
 
-export default header;
+export default Header;
