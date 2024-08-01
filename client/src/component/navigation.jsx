@@ -9,8 +9,8 @@ import {
 import { GrServicePlay } from "react-icons/gr";
 import { Link } from "react-router-dom";
 
-const Navigation = () => {
-  const [showDropdown, setShowDropdown] = useState(false);
+const Navigation = ({ onMouseOver, onMouseOut }) => {
+  /*const [showDropdown, setShowDropdown] = useState(false);
 
   const handleMouseOver = () => {
     setShowDropdown(true);
@@ -18,41 +18,27 @@ const Navigation = () => {
 
   const handleMouseOut = () => {
     setShowDropdown(false);
-  };
+  };*/
 
   return (
     <div className="navigation">
       <ul className="navigation-list">
+        <li onMouseOver={() => onMouseOver("Services")} onMouseOut={onMouseOut}>
+          <GrServicePlay size={24} />
+        </li>
         <li
-        /*onMouseOver={handleMouseOver}
-          onMouseOut={handleMouseOut}
-          className="relative"*/
+          onMouseOver={() => onMouseOver("Whishelist")}
+          onMouseOut={onMouseOut}
         >
-          <MdFavorite size={24} />{" "}
+          <MdFavorite size={24} />
         </li>
 
-        <li
-        /*onMouseOver={handleMouseOver}
-          onMouseOut={handleMouseOut}
-          className="relative"*/
-        >
-          <MdShoppingCart size={24} />{" "}
+        <li onMouseOver={() => onMouseOver("Cart")} onMouseOut={onMouseOut}>
+          <MdShoppingCart size={24} />
         </li>
 
-        <li
-        /*onMouseOver={handleMouseOver}
-          onMouseOut={handleMouseOut}
-          className="relative"*/
-        >
-          <MdAccountCircle size={24} />{" "}
-        </li>
-
-        <li
-        /*onMouseOver={handleMouseOver}
-          onMouseOut={handleMouseOut}
-          className="relative"*/
-        >
-          <GrServicePlay size={24} />{" "}
+        <li onMouseOver={() => onMouseOver("Account")} onMouseOut={onMouseOut}>
+          <MdAccountCircle size={24} />
         </li>
       </ul>{" "}
     </div>

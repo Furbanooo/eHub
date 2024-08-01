@@ -1,47 +1,44 @@
+/* header.css */
+
 .header-container {
   position: fixed;
   top: 1rem;
-  left: 50%; /* Center horizontally */
-  transform: translateX(-50%); /* Adjust for centering */
-  z-index: 10000; /* Ensure the header is on top */
-  width: 300px; /* Starting width (collapsed state) */
-  height: 70px; /* Height of the pill shape */
-  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
-  border-radius: 50px; /* Rounded corners for the pill shape */
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10000;
+  width: 300px;
+  height: 70px;
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 50px;
   display: flex;
   align-items: center;
-  justify-content: center; /* Center logo */
+  justify-content: center;
   overflow: hidden;
-  transition: all 0.3s ease-in-out; /* Smooth transition on hover */
+  transition: all 0.3s ease-in-out;
 }
 
 .header-container:hover {
-  width: 400px; /* Expanded width */
+  width: 400px;
   height: 100px;
 }
 
 .header-container > div {
-  /* Additional styling for inner content when expanded */
   display: flex;
   align-items: center;
-  opacity: 0; /* Hidden initially */
-  transition: opacity 0.3s ease-in-out; /* Fade-in transition */
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
 }
 
 .header-container:hover > div {
   opacity: 1;
-  transition: all 0.3s ease-in-out;
 }
 
 .header-container h1 {
-  /* Logo styling */
   font-size: 1.2rem;
   font-weight: bold;
   margin: 0;
-  /* Add more styles if needed */
 }
 
 .navigation {
-  /* Navigation styles (adjust as needed) */
-  margin-left: 1rem; /* Space between logo and navigation */
+  margin-left: 1rem;
 }
