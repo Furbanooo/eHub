@@ -2,24 +2,34 @@
 
 .header-container {
   position: fixed;
-  top: 1rem;
+  top: 3rem;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 10000;
-  width: 300px;
+  width: 40%;
   height: 70px;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(69, 65, 65, 0.318);
   border-radius: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
   transition: all 0.3s ease-in-out;
+  padding: 0px;
 }
 
 .header-container:hover {
-  width: 400px;
-  height: 100px;
+  width: 60%;
+  height: auto;
+  top: 5.5rem;
+  align-items: center;
+  justify-content: center;
+  padding: 30px 20px;
+  transition: all 0.3s ease-in-out;
+  /*padding: auto 0;*/
+
+  display: flex; /* Ensure flexbox is enabled */
+  align-items: center; /* Center vertically */
 }
 
 .header-container > div {
@@ -37,6 +47,40 @@
   font-size: 1.2rem;
   font-weight: bold;
   margin: 0;
+}
+
+.header-container {
+  left: 50%;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header-dropdown {
+  width: 100%;
+  height: auto;
+  display: flex; /* Enable flexbox */
+  flex-direction: column;
+
+  justify-content: center; /* Center vertically */
+  align-items: center;
+  margin: 0 10%;
+}
+
+.uper-dropdown {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 10%;
+}
+
+.lower-dropdown {
+  margin: 30px 15px;
+  align-content: center;
+  justify-content: center;
+  height: 100%;
 }
 
 .navigation {

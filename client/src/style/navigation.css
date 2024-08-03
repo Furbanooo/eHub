@@ -3,6 +3,7 @@
   margin-left: 1rem; /* Space between logo and navigation */
   display: flex;
   align-items: center; /* Align navigation items vertically */
+  width: 100%;
 }
 
 .navigation-list {
@@ -15,7 +16,6 @@
 }
 
 .navigation-list li {
-  /* Navigation list item styles (adjust as needed) */
   position: relative; /* For positioning the dropdown */
 }
 

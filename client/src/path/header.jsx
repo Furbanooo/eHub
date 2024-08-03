@@ -24,14 +24,19 @@ function Header() {
   };
 
   const [scale, setScale] = useState(1);
+  /*
+  const [widthScale, setWidthScale] = useState(1);
+  const [heightScale, setHeightScale] = useState(1);
 
   useEffect(() => {
     if (hoveredItem) {
-      setScale(1.5);
+      setWidthScale(1.9);
+      setHeightScale(3); // Adjust the height scale as needed
     } else {
-      setScale(1);
+      setWidthScale(1);
+      setHeightScale(1);
     }
-  });
+  }, [hoveredItem]);*/
 
   return (
     <div
@@ -42,38 +47,55 @@ function Header() {
       {showDropdown ? (
         <div
           className="header-dropdown"
-          style={{ transform: `scale(${scale})` }}
+          /*
+          style={{
+            transform: `scale(${widthScale}, ${heightScale})`,
+          }}*/
         >
-          <h1>eHub</h1>
-          <Navigation onMouseOver={handleItemOver} onMouseOut={handleItemOut} />
+          <div className="uper-dropdown">
+            <h1>eHub</h1>
 
-          {hoveredItem === "Services" ? (
             <div>
-              <h2>Services</h2>
-              {/* preview rendering logic*/}
+              <Navigation
+                onMouseOver={handleItemOver}
+                onMouseOut={handleItemOut}
+              />
             </div>
-          ) : null}
+          </div>
 
-          {hoveredItem === "Whishelist" ? (
-            <div>
-              <h2>Whishelist</h2>
-              {/* preview rendering logic*/}
-            </div>
-          ) : null}
+          <div
+            className="lower-dropdown"
+            onMouseOver={handleItemOver}
+            onMouseOut={handleItemOut}
+          >
+            {hoveredItem === "Services" ? (
+              <div>
+                <h2>Services</h2>
+                {/* preview rendering logic*/}
+              </div>
+            ) : null}
 
-          {hoveredItem === "Cart" ? (
-            <div>
-              <h2>Cart</h2>
-              {/* preview rendering logic*/}
-            </div>
-          ) : null}
+            {hoveredItem === "Whishelist" ? (
+              <div>
+                <h2>Whishelist</h2>
+                {/* preview rendering logic*/}
+              </div>
+            ) : null}
 
-          {hoveredItem === "Account" ? (
-            <div>
-              <h2>Account</h2>
-              {/* preview rendering logic*/}
-            </div>
-          ) : null}
+            {hoveredItem === "Cart" ? (
+              <div>
+                <h2>Cart</h2>
+                {/* preview rendering logic*/}
+              </div>
+            ) : null}
+
+            {hoveredItem === "Account" ? (
+              <div>
+                <h2>Account</h2>
+                {/* preview rendering logic*/}
+              </div>
+            ) : null}
+          </div>
         </div>
       ) : (
         <h1>eHub</h1>
