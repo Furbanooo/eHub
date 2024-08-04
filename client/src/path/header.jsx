@@ -4,6 +4,7 @@ import "../style/header.css";
 
 function Header() {
   const [showDropdown, setShowDropdown] = useState(false);
+  const [hoveredItem, setHoveredItem] = useState(null);
 
   const handleHeaderOver = () => {
     setShowDropdown(true);
@@ -13,8 +14,6 @@ function Header() {
     setShowDropdown(false);
   };
 
-  const [hoveredItem, setHoveredItem] = useState(null);
-
   const handleItemOver = (item) => {
     setHoveredItem(item);
   };
@@ -23,8 +22,10 @@ function Header() {
     setHoveredItem(null);
   };
 
-  const [scale, setScale] = useState(1);
+  useEffect(() => {});
+
   /*
+  const [scale, setScale] = useState(1);
   const [widthScale, setWidthScale] = useState(1);
   const [heightScale, setHeightScale] = useState(1);
 
@@ -45,13 +46,7 @@ function Header() {
       className="header-container"
     >
       {showDropdown ? (
-        <div
-          className="header-dropdown"
-          /*
-          style={{
-            transform: `scale(${widthScale}, ${heightScale})`,
-          }}*/
-        >
+        <div className="header-dropdown">
           <div className="uper-dropdown">
             <h1>eHub</h1>
 

@@ -19,6 +19,9 @@ function App() {
   return (
     <div className="navigation-container">
       <Header />
+      {apiTest.map((i) => {
+        return <p>{i}</p>;
+      })}
     </div>
   );
 }

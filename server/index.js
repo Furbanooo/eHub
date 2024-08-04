@@ -19,6 +19,7 @@ app.use(cookieParser());
 app.use(cors());
 
 app.use('/api/user', userRoutes)
+
 app.get('/test', (req, res) => {
     res.send(['test', 'test2', 'test3', 'test4']);
 })
