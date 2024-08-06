@@ -2,7 +2,7 @@ import React from "react";
 import { DropdownsProvider } from "./utilities/dropDown";
 import { useState, useEffect } from "react";
 import Header from "./path/header.jsx";
-import Navigation from "./component/navigation.jsx";
+import Register from "./component/register.jsx";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -18,10 +18,16 @@ function App() {
 
   return (
     <div className="navigation-container">
-      <Header />
-      {apiTest.map((i) => {
-        return <p key={i}>{i}</p>;
-      })}
+      <Router>
+        <Header />
+        <Routes>
+          <Route path="/register" element={<Register />} />
+          {/* Add other routes here */}
+        </Routes>
+        {/* Conditionally display apiTest data based on route */}
+        {/* Example: */}
+        {/* <Route path="/" element={<div>{apiTest.map((i) => <p key={i}>{i}</p>)}</div>} /> */}
+      </Router>
     </div>
   );
 }
