@@ -20,7 +20,7 @@ function App() {
     <div className="navigation-container">
       <Header />
       {apiTest.map((i) => {
-        return <p>{i}</p>;
+        return <p key={i}>{i}</p>;
       })}
     </div>
   );

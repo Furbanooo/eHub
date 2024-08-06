@@ -57,40 +57,51 @@ function Header() {
               />
             </div>
           </div>
+          {hoveredItem ? (
+            <div
+              className="lower-dropdown"
+              onMouseOver={handleItemOver}
+              onMouseOut={handleItemOut}
+            >
+              {hoveredItem === "Services" ? (
+                <div>
+                  <h2>Services</h2>
+                  {/* preview rendering logic*/}
+                </div>
+              ) : (
+                ""
+              )}
 
-          <div
-            className="lower-dropdown"
-            onMouseOver={handleItemOver}
-            onMouseOut={handleItemOut}
-          >
-            {hoveredItem === "Services" ? (
-              <div>
-                <h2>Services</h2>
-                {/* preview rendering logic*/}
-              </div>
-            ) : null}
+              {hoveredItem === "Whishelist" ? (
+                <div>
+                  <h2>Whishelist</h2>
+                  {/* preview rendering logic*/}
+                </div>
+              ) : (
+                ""
+              )}
 
-            {hoveredItem === "Whishelist" ? (
-              <div>
-                <h2>Whishelist</h2>
-                {/* preview rendering logic*/}
-              </div>
-            ) : null}
+              {hoveredItem === "Cart" ? (
+                <div>
+                  <h2>Cart</h2>
+                  {/* preview rendering logic*/}
+                </div>
+              ) : (
+                ""
+              )}
 
-            {hoveredItem === "Cart" ? (
-              <div>
-                <h2>Cart</h2>
-                {/* preview rendering logic*/}
-              </div>
-            ) : null}
-
-            {hoveredItem === "Account" ? (
-              <div>
-                <h2>Account</h2>
-                {/* preview rendering logic*/}
-              </div>
-            ) : null}
-          </div>
+              {hoveredItem === "Account" ? (
+                <div>
+                  <h2>Account</h2>
+                  {/* preview rendering logic*/}
+                </div>
+              ) : (
+                ""
+              )}
+            </div>
+          ) : (
+            ""
+          )}
         </div>
       ) : (
         <h1>eHub</h1>
