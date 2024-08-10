@@ -9,16 +9,19 @@ const newAccount = async (formData) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(formData),
-    });
+    }); //conection to the backend
 
     // Handle successful registration or error
     if (response.ok) {
       console.log("Registration successful!");
+      window.location.href = "/login";
     } else {
-      console.error("Registration failed.");
+      const errorData = await response.json();
+      return errorData.message; // Return the error message
     }
   } catch (error) {
     console.error("Error during registration:", error);
+    return "An error occurred. Please try again later.";
   }
 };
 
@@ -27,7 +30,9 @@ const Register = () => {
     name: "",
     email: "",
     password: "",
-  });
+  }); // State for form data
+
+  const [errorMessage, setErrorMessage] = useState(null); // State for error message
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -35,17 +40,37 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await newAccount(formData);
+    setErrorMessage(null); // Clear any previous error message
+
+    // Basic input validation
+    if (!formData.name || !formData.email || !formData.password) {
+      setErrorMessage("Please fill in all fields.");
+      return;
+    } else if (formData.password.length < 8) {
+      setErrorMessage("Password must be at least 8 characters long.");
+      return;
+    }
+
+    try {
+      const error = await newAccount(formData);
+      if (error) {
+        setErrorMessage(error);
+      } else {
+        // Handle successful registration and redirect to login page
+        console.log("Registration successful!");
+        window.location.href = "/login";
+      }
+    } catch (error) {
+      setErrorMessage("An error occurred. Please try again later.");
+    }
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label
-            htmlFor="name"
-            className="block text-gray-700 text-sm font-bold mb-2"
-          >
+    <div className="register-container">
+      <h2 className="register-title">Create Your Account</h2>
+      <form onSubmit={handleSubmit} className="register-form">
+        <div className="form-group">
+          <label htmlFor="name" className="form-label">
             Name
           </label>
           <input
@@ -54,14 +79,11 @@ const Register = () => {
             name="name"
             value={formData.name}
             onChange={handleChange}
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className="form-input"
           />
         </div>
-        <div>
-          <label
-            htmlFor="email"
-            className="block text-gray-700 text-sm font-bold mb-2"
-          >
+        <div className="form-group">
+          <label htmlFor="email" className="form-label">
             Email
           </label>
           <input
@@ -70,14 +92,11 @@ const Register = () => {
             name="email"
             value={formData.email}
             onChange={handleChange}
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className="form-input"
           />
         </div>
-        <div>
-          <label
-            htmlFor="password"
-            className="block text-gray-700 text-sm font-bold mb-2"
-          >
+        <div className="form-group">
+          <label htmlFor="password" className="form-label">
             Password
           </label>
           <input
@@ -86,13 +105,11 @@ const Register = () => {
             name="password"
             value={formData.password}
             onChange={handleChange}
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className="form-input"
           />
         </div>
-        <button
-          type="submit"
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-        >
+        {errorMessage && <div className="error-message">{errorMessage}</div>}
+        <button type="submit" className="register-button">
           Register
         </button>
       </form>

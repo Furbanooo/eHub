@@ -1,8 +1,8 @@
 import React from "react";
-import { DropdownsProvider } from "./utilities/dropDown";
 import { useState, useEffect } from "react";
 import Header from "./path/header.jsx";
 import Register from "./component/register.jsx";
+import Login from "./component/login.jsx";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -22,11 +22,19 @@ function App() {
         <Header />
         <Routes>
           <Route path="/register" element={<Register />} />
-          {/* Add other routes here */}
+          <Route path="/login" element={<Login />} />
+          {/* Conditionally display apiTest data based on route */}
+          <Route
+            path="/"
+            element={
+              <div>
+                {apiTest.map((i) => (
+                  <p key={i}>{i}</p>
+                ))}
+              </div>
+            }
+          />
         </Routes>
-        {/* Conditionally display apiTest data based on route */}
-        {/* Example: */}
-        {/* <Route path="/" element={<div>{apiTest.map((i) => <p key={i}>{i}</p>)}</div>} /> */}
       </Router>
     </div>
   );
