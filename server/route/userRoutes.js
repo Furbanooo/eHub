@@ -1,8 +1,7 @@
-import express, { text } from "express";
+import express from "express";
 import userControllers from "../controllers/userController.js";
 import { authenticate, authorizeAdmin } from "../middleware/auth.js";
 import logger from "../middleware/logger.js";
-import expressAsyncHandler from "express-async-handler";
 
 const userRoutes = express.Router();
 
@@ -16,9 +15,9 @@ userRoutes
     .delete('/profile', authenticate, userControllers.deleteUser); //delete the account 
 
 userRoutes // admin pritileges 
-    .get('/accounts', authenticate, authorizeAdmin, userControllers.getAllUsers)
-    .get('/accounts/:id', authenticate, authorizeAdmin, userControllers.userInfo)
-    .put('/accounts/:id', authenticate, authorizeAdmin, userControllers.updateUser)
-    .delete('/accounts/:id', authenticate, authorizeAdmin, userControllers.deleteUser);
+    .get('admin/accounts', authenticate, authorizeAdmin, userControllers.getAllUsers)
+    .get('admin/accounts/:id', authenticate, authorizeAdmin, userControllers.userInfo)
+    .put('admin/accounts/:id', authenticate, authorizeAdmin, userControllers.updateUser)
+    .delete('admin/accounts/:id', authenticate, authorizeAdmin, userControllers.deleteUser);
 
 export default userRoutes;

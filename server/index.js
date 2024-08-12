@@ -5,11 +5,11 @@ import express from 'express';
 import dotenv from 'dotenv';
 import connectDB from '../server/config/db.js';
 import userRoutes from './route/userRoutes.js';
+import productRoutes from './route/productesRoutes.js';
 
-
+//settings and connection to the database
 dotenv.config();
 const port = process.env.PORT || 3000;
-
 connectDB();
 
 const app = express();
@@ -18,7 +18,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(cors());
 
-app.use('/api/user', userRoutes)
+app.use('/api/user', userRoutes);
+app.use('/api/product', productRoutes);
 
 app.get('/test', (req, res) => {
     res.send(['test', 'test2', 'test3', 'test4']);

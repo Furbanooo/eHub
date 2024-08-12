@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Navigate, useNavigate } from "react-router-dom";
 
 // Define the newAccount function to handle registration
 const newAccount = async (formData) => {
@@ -58,7 +59,7 @@ const Register = () => {
       } else {
         // Handle successful registration and redirect to login page
         console.log("Registration successful!");
-        window.location.href = "/login";
+        Navigate("/login ");
       }
     } catch (error) {
       setErrorMessage("An error occurred. Please try again later.");
