@@ -1,10 +1,11 @@
 import models from "../models/models.js";
+import Category from "../models/category.js";
 import asyncHandler from 'express-async-handler';
 
 const createProduct = asyncHandler(async (req, res) => {
-    const { name, description, category, imageUrl, price, stock, condition } = req.body;//extract all informations needed from the request 
+    const { name, description, category: categoryName, imageUrl, price, stock, condition } = req.body;//extract all informations needed from the request 
 
-    if (!name || !description || !category || !imageUrl || !price || !stock || !condition) {
+    if (!name || !description || !categoryName || !imageUrl || !price || !stock || !condition) {
         res.status(400).json({ message: 'Please fill in all required fields' });
         return;
     }//verifies if all requires informations required exist 
@@ -15,11 +16,20 @@ const createProduct = asyncHandler(async (req, res) => {
         return;
     }
 
+    // Check if the category exists
+    let category = await Category.findOne({ name: categoryName });
+
+    // If category doesn't exist, create it
+    if (!category) {
+        category = new Category({ name: categoryName });
+        await category.save();
+    }
+
     try {
         const newProduct = new models.Product({
             name,
             description,
-            category,
+            category: category._id, // Use the category's ID
             imageUrl,
             price,
             stock,
@@ -56,16 +66,25 @@ const getProductById = asyncHandler(async (req, res) => {
 });
 
 const updateProduct = asyncHandler(async (req, res) => {
-    const { name, description, category, imageUrl, price, stock, condition } = req.body;
+    const { name, description, category: categoryName, imageUrl, price, stock, condition } = req.body;
     const productId = req.params.id;
 
     try {
+        // Check if the category exists
+        let category = await Category.findOne({ name: categoryName });
+
+        // If category doesn't exist, create it
+        if (!category) {
+            category = new Category({ name: categoryName });
+            await category.save();
+        }
+
         const updatedProduct = await models.Product.findByIdAndUpdate(
             productId,
             {
                 name: name || undefined,
                 description: description || undefined,
-                category: category || undefined,
+                category: category._id || undefined, // Use the category's ID
                 imageUrl: imageUrl || undefined,
                 price: price || undefined,
                 stock: stock || undefined,
