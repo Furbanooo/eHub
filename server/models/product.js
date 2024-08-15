@@ -9,11 +9,11 @@ const productSchema = new Schema({
         type: String,
         required: true,
     },
-    category: {
+    category: [{
         type: Schema.Types.ObjectId,
         ref: "Category",
         required: true,
-    },
+    }],
     imageUrl: {
         type: String,
         required: true,

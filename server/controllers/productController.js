@@ -1,5 +1,4 @@
 import models from "../models/models.js";
-import Category from "../models/category.js";
 import asyncHandler from 'express-async-handler';
 
 const createProduct = asyncHandler(async (req, res) => {
@@ -17,11 +16,11 @@ const createProduct = asyncHandler(async (req, res) => {
     }
 
     // Check if the category exists
-    let category = await Category.findOne({ name: categoryName });
+    let category = await models.Category.findOne({ name: categoryName });
 
     // If category doesn't exist, create it
     if (!category) {
-        category = new Category({ name: categoryName });
+        category = new models.Category({ name: categoryName });
         await category.save();
     }
 
@@ -71,11 +70,11 @@ const updateProduct = asyncHandler(async (req, res) => {
 
     try {
         // Check if the category exists
-        let category = await Category.findOne({ name: categoryName });
+        let category = await models.Category.findOne({ name: categoryName });
 
         // If category doesn't exist, create it
         if (!category) {
-            category = new Category({ name: categoryName });
+            category = new models.Category({ name: categoryName });
             await category.save();
         }
 

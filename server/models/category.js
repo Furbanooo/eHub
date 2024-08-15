@@ -17,7 +17,11 @@ const categorySchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "Category",
         default: null
-    }
+    },
+    products: [{
+        type: Schema.Types.ObjectId,
+        ref: "Product",
+    }]
 }, { timestamps: true });
 
 const Category = mongoose.model("Category", categorySchema);

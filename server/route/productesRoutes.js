@@ -4,6 +4,17 @@ import { authenticate, authorizeAdmin } from "../middleware/auth.js";
 
 const productRoutes = express.Router();
 
-productRoutes.post('/admin/add', authenticate, authorizeAdmin, productControllers.createProduct);
-productRoutes.get('/admin/products', authenticate, authorizeAdmin, productControllers.getAllProducts);
+//admin routes
+productRoutes.post('/admin/addProducts',
+    authenticate, authorizeAdmin, productControllers.createProduct);
+productRoutes.get('/admin/getAllProducts',
+    authenticate, authorizeAdmin, productControllers.getAllProducts);
+productRoutes.put('/admin/products/:id',
+    authenticate, authorizeAdmin, productControllers.updateProduct);
+productRoutes.delete('/admin/products/:id', authenticate, authorizeAdmin, productControllers.deleteProduct);
+
+//custumer routes
+productRoutes.get('/products/:id', productControllers.getProductById);
+productRoutes.get('/products', productControllers.getAllProducts);
+
 export default productRoutes;
