@@ -2,7 +2,6 @@ import User from '../models/user.js';
 import bcrypt from 'bcryptjs';
 import asyncHandler from 'express-async-handler';
 import generateToken from '../utils/jwtToken.js'
-import { get } from 'mongoose';
 
 const createUser = asyncHandler(async (req, res) => {
     const { name, email, password } = req.body;

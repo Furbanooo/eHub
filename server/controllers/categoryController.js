@@ -1,4 +1,4 @@
-import models from '../models/models';
+import models from '../models/models.js';
 import asyncHandler from 'express-async-handler';
 
 const createCategory = asyncHandler(async (req, res) => {

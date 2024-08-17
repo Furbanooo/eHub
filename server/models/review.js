@@ -12,31 +12,37 @@ const reviewSchema = new Schema({
         required: true,
     },
     rating: {
-        type: Number,
-        required: true,
-    },
-    title: {
-        type: String
+        type: Schema.Types.ObjectId,
+        ref: "Rating"
     },
     content: {
-        type: String,
-        required: true,
+        post: {
+            type: String,
+            required: true
+        },
+        photos: [{
+            type: String,
+        }],
+        videos: [{
+            type: String,
+        }],
     },
-    photos: [{
-        type: String,
+    likes: {
+        type: Number,
+        default: 0,
+    },
+    comments: [{
+        type: String
     }],
-    videos: [{
-        type: String,
-    }],
-    createdAt: {
-        type: Date,
-        default: Date.now,
+    reposts: {
+        type: Number,
+        default: 0,
     },
-    updatedAt: {
-        type: Date,
-        default: Date.now,
-    },
-});
+    replies: [{
+        type: Schema.Types.ObjectId,
+        ref: "Review",
+    }]
+}, { timestamps: true });
 
 const Review = mongoose.model("Review", reviewSchema);
 export default Review;

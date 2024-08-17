@@ -14,7 +14,7 @@ productRoutes.put('/admin/products/:id',
 productRoutes.delete('/admin/products/:id', authenticate, authorizeAdmin, productControllers.deleteProduct);
 
 //custumer routes
-productRoutes.get('/products/:id', productControllers.getProductById);
-productRoutes.get('/products', productControllers.getAllProducts);
+productRoutes.get('/:id', productControllers.getProductById);
+productRoutes.get('/', productControllers.getAllProducts);
 
 export default productRoutes;

@@ -65,11 +65,10 @@ const getWishlist = asyncHandler(async (req, res) => {
     }
 });
 
+const wishlistControllers = {
+    addToWishlist,
+    deleteFromWishlist,
+    getWishlist
+}
 
-export default (
-    wishlistControllers = {
-        addToWishlist,
-        deleteFromWishlist,
-        getWishlist
-    }
-);
+export default wishlistControllers

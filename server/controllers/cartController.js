@@ -1,5 +1,6 @@
-import models from "../models/models";
+import models from "../models/models.js";
 import asyncHandler from "express-async-handler";
+import categoryControllers from "./categoryController.js";
 
 const addToCart = asyncHandler(async (req, res) => {
 
@@ -67,9 +68,9 @@ const getCart = asyncHandler(async (req, res) => {
     }
 });
 
-export default (
-    cartControllers = {
-        addToCart,
-        deleteFromCart,
-        getCart
-    });
+const cartControllers = {
+    addToCart,
+    deleteFromCart,
+    getCart
+}
+export default cartControllers;

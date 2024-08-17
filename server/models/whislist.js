@@ -21,7 +21,7 @@ const wishlistSchema = new Schema({
             }
         }
     ],
-});
+}, { timestamps: true });
 
 wishlistSchema.index({ User: 1, "products.productId": 1 }, { unique: true });
 
