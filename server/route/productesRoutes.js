@@ -13,7 +13,7 @@ productRoutes.put('/admin/products/:id',
     authenticate, authorizeAdmin, productControllers.updateProduct);
 productRoutes.delete('/admin/products/:id', authenticate, authorizeAdmin, productControllers.deleteProduct);
 
-//custumer routes
+//customer routes
 productRoutes.get('/:id', productControllers.getProductById);
 productRoutes.get('/', productControllers.getAllProducts);
 
