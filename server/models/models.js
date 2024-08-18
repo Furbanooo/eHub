@@ -7,7 +7,7 @@ import Wishlist from "./whislist.js";
 import Cart from "./cart.js";
 import Rating from "./rating.js";
 import Order from "./order.js";
-import Payment from "./payement.js";
+import Payment from "./payment.js";
 
 
 

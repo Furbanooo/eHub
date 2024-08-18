@@ -18,7 +18,7 @@ const orderSchema = new Schema({
             required: true,
         },
     }],
-    quantity: {
+    totalAmount: {
         type: Number,
         required: true,
     },
@@ -39,7 +39,7 @@ const orderSchema = new Schema({
     },
     status: {
         type: String,
-        enum: ['pending', 'completed', 'cancelled'],
+        enum: ['pending', 'completed', 'on the way', 'delivered', 'cancelled'],
         default: 'pending',
     },
     createdAt: {
