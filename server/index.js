@@ -25,6 +25,8 @@ app.use('/api/wishlist', routes.wishlistRoutes);
 app.use('/api/review', routes.reviewRoutes);
 app.use('/api/rating', routes.ratingRoutes);
 app.use('/api/order', routes.orderRoutes);
+app.use('/api/search', routes.searchRoutes);
+
 
 
 app.get('/test', (req, res) => {

@@ -6,6 +6,8 @@ import wishlistRoutes from "./wishlistRoutes.js";
 import cartRoutes from "./cartRoutes.js";
 import ratingRoutes from "./ratingRoutes.js";
 import orderRoutes from "./orderRoutes.js";
+import searchRoutes from "./searchRoute.js";
+
 
 const routes = {
     userRoutes,
@@ -15,6 +17,7 @@ const routes = {
     wishlistRoutes,
     cartRoutes,
     ratingRoutes,
-    orderRoutes
+    orderRoutes,
+    searchRoutes
 }
 export default routes;
