@@ -3,9 +3,9 @@
   position: fixed;
   top: 3rem;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translateX(-50%);
   z-index: 10000;
-  width: 40%;
+  width: 30%;
   height: 70px;
   background-color: rgba(69, 65, 65, 0.318);
   border-radius: 50px;
@@ -13,81 +13,59 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  transition: all 0.3s ease-in-out;
-  padding: 0px;
+  transition: all 0.5s ease-in-out;
+  padding: 0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .header-container:hover {
   width: 60%;
-  top: 3.6rem;
-  height: 10vh;
-  align-items: center;
-  justify-content: center;
-  padding: 30px 20px;
-  transition: all 0.3s ease-in-out;
-  /*padding: auto 0;*/
-
-  display: flex; /* Ensure flexbox is enabled */
-  align-items: center; /* Center vertically */
-}
-
-.header-container > div {
-  display: flex;
-  align-items: center;
-  opacity: 0;
-  transition: opacity 0.3s ease-in-out;
-}
-
-.header-container:hover > div {
-  opacity: 1;
+  background-color: rgba(69, 65, 65, 0.5);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+  height: auto;
+  padding: 30px 15px 30px 15px;
 }
 
 .header-container h1 {
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   font-weight: bold;
-  margin: 0;
-}
-
-.header-container {
-  left: 50%;
-  padding: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  color: #fff;
 }
 
 .header-dropdown {
   width: 100%;
-  height: auto;
-  display: flex; /* Enable flexbox */
-  flex-direction: column;
-
-  justify-content: center; /* Center vertically */
   align-items: center;
-  margin: 0 10%;
 }
 
 .uper-dropdown {
   width: 100%;
+  position: relative;
+  height: auto;
   display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: space-between;
   margin: 0 10%;
-}
-
-.lower-dropdown {
-  margin: 30px 15px;
   align-content: center;
+  margin: 0;
+}
+.uper-dropdown h1 {
+  width: 30%;
+  padding-left: 50px;
+}
+.navigation {
+  position: relative;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
-  height: 100%;
+  align-items: center;
+  width: 60%;
 }
 
-/* navigation*/
-.navigation {
-  margin-left: 1rem; /* Space between logo and navigation */
+.navigation-container {
+  width: auto;
+  height: auto;
   display: flex;
-  align-items: center; /* Align navigation items vertically */
-  width: 100%;
 }
 
 .navigation-list {
@@ -95,7 +73,7 @@
   padding: 0;
   margin: 0;
   display: flex;
-  gap: 1rem; /* Add space between list items */
+  gap: 1rem; /
 }
 
 .navigation-list li {
