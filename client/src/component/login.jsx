@@ -21,8 +21,8 @@ function Login() {
       });
 
       if (response.ok) {
-        // Successful login, redirect to the desired page
-        navigate("/"); // Replace with your desired route
+        // Successful login, redirect to the home page
+        navigate("/");
       } else {
         const errorData = await response.json();
         setErrorMessage(errorData.message);

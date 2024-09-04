@@ -77,39 +77,15 @@
 }
 
 .navigation-list li {
-  position: relative; /* For positioning the dropdown */
+  position: relative; 
+  transition: all 0.5s ease-in-out;
 }
 
 .navigation-list li svg {
-  /* Icon styles (adjust as needed) */
-  color: white; /* Make icon color white for better contrast */
+  color: white; 
   cursor: pointer;
-  transition: transform 0.2s ease; /* Add a subtle transition */
 }
 
 .navigation-list li:hover ~ .header-container {
   height: auto;
-}
-
-.navigation-list li div ul {
-  /* Dropdown list styles (adjust as needed) */
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.navigation-list li div a {
-  /* Dropdown link styles (adjust as needed) */
-  display: block;
-  padding: 8px 12px;
-  color: #333;
-  text-decoration: none;
-  transition: background-color 0.2s ease;
-}
-
-.nav-item-name {
-  /* Navigation item name styles (adjust as needed) */
-  opacity: 0; /* Initially hidden */
-  margin-left: 0.5rem; /* Add space between icon and text */
-  transition: opacity 0.3s ease-in-out; /* Smooth fade-in */
 }
