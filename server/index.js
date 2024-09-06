@@ -25,6 +25,10 @@ app.use('/api/wishlist', routes.wishlistRoutes);
 app.use('/api/review', routes.reviewRoutes);
 app.use('/api/rating', routes.ratingRoutes);
 app.use('/api/order', routes.orderRoutes);
+app.use('/api/search', routes.searchRoutes);
+
+
+app.use('/api/order', routes.orderRoutes);
 
 app.get('/test', (req, res) => {
     res.send(['test', 'test2', 'test3', 'test4']);

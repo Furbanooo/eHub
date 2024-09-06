@@ -78,17 +78,23 @@ const updateProduct = asyncHandler(async (req, res) => {
             await category.save();
         }
 
+        // Fetch the existing product to get its current data
+        const existingProduct = await models.Product.findById(productId);
+
+        // Build the update object, using existing data if no new value is provided
+        const updateData = {
+            name: name || existingProduct.name,
+            description: description || existingProduct.description,
+            category: category._id || existingProduct.category,
+            imageUrl: imageUrl || existingProduct.imageUrl,
+            price: price || existingProduct.price,
+            stock: stock || existingProduct.stock,
+            condition: condition || existingProduct.condition,
+        };
+
         const updatedProduct = await models.Product.findByIdAndUpdate(
             productId,
-            {
-                name: name || undefined,
-                description: description || undefined,
-                category: category._id || undefined, // Use the category's ID
-                imageUrl: imageUrl || undefined,
-                price: price || undefined,
-                stock: stock || undefined,
-                condition: condition || undefined,
-            },
+            updateData,
             { new: true } // Return the updated document
         ).populate('category').populate('ranking');
 
@@ -108,7 +114,7 @@ const deleteProduct = asyncHandler(async (req, res) => {
     try {
         const deletedProduct = await models.Product.findByIdAndDelete(productId);
         if (deletedProduct) {
-            res.status(204).send(); // No content (successful deletion)
+            res.status(204).json({ message: 'Product deleted successfully' }); // No content (successful deletion)
         } else {
             res.status(404).json({ message: 'Product not found' });
         }
