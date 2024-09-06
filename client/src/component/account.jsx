@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Modal, Login, Register } from "./components";
-import "../style/account.css";
+import "../style/modal.css";
 
 function Account() {
   const [modalContent, setModalContent] = useState(null);

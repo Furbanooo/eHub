@@ -33,47 +33,31 @@ function Login() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-900 text-gray-100">
-      <h2 className="text-3xl font-bold mb-8">Login</h2>
-      <form
-        onSubmit={handleSubmit}
-        className="bg-gray-800 p-8 rounded-lg shadow-md w-96"
-      >
-        <div className="mb-4">
-          <label htmlFor="email" className="block text-sm font-medium mb-2">
-            Email
-          </label>
+    <div>
+      <h2>Login</h2>
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label htmlFor="email">Email</label>
           <input
             type="email"
             id="email"
             name="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           />
         </div>
         <div className="mb-4">
-          <label htmlFor="password" className="block text-sm font-medium mb-2">
-            Password
-          </label>
+          <label htmlFor="password">Password</label>
           <input
             type="password"
             id="password"
             name="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           />
         </div>
-        {errorMessage && (
-          <div className="text-red-500 text-sm mb-4">{errorMessage}</div>
-        )}
-        <button
-          type="submit"
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-        >
-          Login
-        </button>
+        {errorMessage && <div>{errorMessage}</div>}
+        <button type="submit">Login</button>
       </form>
     </div>
   );

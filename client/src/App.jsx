@@ -1,9 +1,10 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import Header from "./path/header.jsx";
-import Register from "./component/register.jsx";
-import Login from "./component/login.jsx";
+import Footer from "./path/footer.jsx";
+import { Register, Login } from "./component/components.js";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Marketplace from "./pages/marketplace.jsx";
 
 function App() {
   const [apiTest, setApiTest] = useState([]);
@@ -23,17 +24,7 @@ function App() {
         <Routes>
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
-          {/* Conditionally display apiTest data based on route */}
-          <Route
-            path="/"
-            element={
-              <div>
-                {apiTest.map((i) => (
-                  <p key={i}>{i}</p>
-                ))}
-              </div>
-            }
-          />
+          <Route path="/marketplace" element={<Marketplace />} />
         </Routes>
       </Router>
     </div>
