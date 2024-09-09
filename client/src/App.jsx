@@ -1,7 +1,9 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import Header from "./path/header.jsx";
+import OrderPage from "./pages/order.jsx";
 import Footer from "./path/footer.jsx";
+import Cart from "./component/cart.jsx";
 import { Register, Login } from "./component/components.js";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Marketplace from "./pages/marketplace.jsx";
@@ -24,6 +26,8 @@ function App() {
         <Routes>
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/order/:sessionId" element={<OrderPage />} />
           <Route path="/marketplace" element={<Marketplace />} />
         </Routes>
       </Router>

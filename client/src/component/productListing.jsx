@@ -2,7 +2,7 @@ import React from "react";
 import ProductCard from "../component/ProductCard.jsx";
 import "../style/marketplace.css";
 
-const ProductListing = ({ products }) => {
+const ProductListing = ({ products = [] }) => {
   return (
     <div className="product-list">
       {products.map((product) => (

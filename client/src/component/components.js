@@ -2,7 +2,7 @@ import Login from "./login";
 import Register from "./register";
 import Modal from "./modal";
 import Account from "./account";
-import Searche from "./searche";
+import Search from "./search";
 import ProductCard from "./ProductCard";
 import ProductListing from "./productListing";
 
@@ -11,7 +11,7 @@ export {
     Register,
     Modal,
     Account,
-    Searche,
+    Search,
     ProductCard,
     ProductListing
 };

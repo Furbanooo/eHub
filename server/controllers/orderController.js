@@ -1,21 +1,11 @@
 import models from "../models/models.js";
 import asyncHandler from "express-async-handler";
 
-const makeOder = asyncHandler(async (res, req) => {
-    const { userId, products, totalAmount, paymentId, address } = req.body;
+
+const makeOrder = asyncHandler(async (res, req) => {
+    const { userId, products, totalAmount, paymentIntentId, address, orderType } = req.body;
 
     try {
-
-        if (!userId || !products || !totalAmount || !paymentId || !orderType || !address) {
-            return res.status(400).json({ message: 'Please fill in all required fields' });
-        }
-
-        //check if the payment is valid 
-        const payment = await models.Payment.findById(paymentId);
-        if (!payment || payment.paymentStatus !== 'completed') {
-            return res.status(400).json({ message: 'Invalid payment' });
-        }
-
         // Check if the products are available in stock
         for (const product of products) {
             const productInDb = await models.Product.findById(product.productId);
@@ -24,29 +14,59 @@ const makeOder = asyncHandler(async (res, req) => {
             }
         }
 
-        // Create the order
         const newOrder = new models.Order({
             userId,
             products,
-            totalAmount,
-            paymentId,
             orderType,
+            totalAmount,
+            paymentId: null, // No payment yet
             address,
-            status: 'pending' // Set initial status to 'pending'
+            status: 'pending', // Set as pending
         });
+
         await newOrder.save();
 
-        // Update product stock
-        for (const product of products) {
-            const productInDb = await models.Product.findById(product.productId);
-            productInDb.stock -= product.quantity;
-            await productInDb.save();
-        }
 
         res.status(201).json({ message: 'Order created successfully', order: newOrder });
     } catch (error) {
         res.status(400).json({ message: error.message });
     }
+});
+
+const stripeWebhook = asyncHandler(async (req, res) => {
+    const sig = req.headers['stripe-signature'];
+    let event;
+
+    try {
+        event = stripe.webhooks.constructEvent(req.body, sig, process.env.STRIPE_WEBHOOK_SECRET);
+    } catch (err) {
+        return res.status(400).send(`Webhook Error: ${err.message}`);
+    }
+
+    if (event.type === 'checkout.session.completed') {
+        const session = event.data.object;
+
+        const order = await models.Order.findOne({ paymentId: session.id });
+
+        if (order) {
+            // Update stock for each product
+            for (const item of order.products) {
+                const product = await models.Product.findById(item.productId);
+                if (product) {
+                    product.stock -= item.quantity; // Reduce stock
+                    await product.save();
+                }
+            }
+
+            // Notify the user (e.g., via email or in-app notification)
+            notifyUser(order.userId, 'Your order is complete! Thank you for shopping with us.');
+
+            // Mark the order as completed
+            order.status = 'completed';
+            await order.save();
+        }
+    }
+    res.status(200).json({ received: true });
 });
 
 const updateOrder = asyncHandler(async (req, res) => {
@@ -159,7 +179,8 @@ const trackProductInOrders = asyncHandler(async (req, res) => {
 
 
 const orderControllers = {
-    makeOder,
+    stripeWebhook,
+    makeOrder,
     getOrderById,
     updateOrder,
     cancelOrder,
@@ -168,4 +189,4 @@ const orderControllers = {
     trackProductInOrders
 };
 
-export default orderControllers;
+export default orderControllers;  
